@@ -11,15 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Expenses Planner',
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
- 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -44,8 +43,7 @@ class MyHomePage extends StatelessWidget {
               ),
               NewTransaction(),
               TransactionsList(),
-            ]
-            ),
+            ]),
       ),
     );
   }
