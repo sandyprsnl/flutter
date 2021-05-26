@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expenses Planner',
       home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
