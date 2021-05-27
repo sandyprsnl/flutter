@@ -1,3 +1,5 @@
+import 'package:expense_planner/widgets/new_transaction.dart';
+
 import './widgets/user_transactions.dart';
 import 'package:flutter/material.dart';
 
@@ -18,11 +20,27 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  void startNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (bCtx) {
+        return NewTransaction();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter App'),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.add,
+              ))
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -41,8 +59,13 @@ class MyHomePage extends StatelessWidget {
                 ),
                 elevation: 5,
               ),
-              UserTransactions()
+              UserTransactions(),
             ]),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
       ),
     );
   }
