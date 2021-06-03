@@ -14,6 +14,7 @@ void main() {
     theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
+        // errorColor: Colors.red,
         textTheme: ThemeData.light().textTheme.copyWith(
               headline6: TextStyle(
                   fontFamily: 'OpenSans',
@@ -78,6 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransactions(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,8 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 recentTransactions: _recentTransactions,
               ),
               TransactionsList(
-                transaction: _userTransactions,
-              ),
+                  transaction: _userTransactions,
+                  deleteTx: _deleteTransactions),
             ]),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
