@@ -57,8 +57,8 @@ class TransactionsList extends StatelessWidget {
                   trailing: MediaQuery.of(context).size.width > 460
                       ? TextButton.icon(
                           style: TextButton.styleFrom(
-                              textStyle: TextStyle(
-                                  color: Theme.of(context).errorColor)),
+                            primary: Theme.of(context).errorColor,
+                          ),
                           onPressed: () => deleteTx(transaction[index].id),
                           icon: Icon(Icons.delete),
                           label: Text('Delete'))
