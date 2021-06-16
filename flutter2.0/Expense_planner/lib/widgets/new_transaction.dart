@@ -49,59 +49,66 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: Container(
-      padding: EdgeInsets.all(10),
-      child:
-          Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[
-        TextField(
-          decoration: InputDecoration(
-            labelText: 'Title',
-          ),
-          controller: _titleController,
-          onSubmitted: (_) => _submitedData(),
-        ),
-        TextField(
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            labelText: 'Amount',
-          ),
-          controller: _amountController,
-          onSubmitted: (_) => _submitedData(),
-        ),
-        Container(
-          height: 70,
-          child: Row(
+    return SingleChildScrollView(
+      child: Card(
+          child: Container(
+        padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Expanded(
-                child: Text(_selectedDate == null
-                    ? 'No date Choosen!'
-                    : 'Picked Date : ${DateFormat.yMd().format(_selectedDate)}'),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                ),
+                controller: _titleController,
+                onSubmitted: (_) => _submitedData(),
               ),
-              TextButton(
-                  style: TextButton.styleFrom(
-                      textStyle:
-                          TextStyle(color: Theme.of(context).primaryColor)),
-                  onPressed: _presentDatePicker,
-                  child: Text(
-                    'Choose Date',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ))
-            ],
-          ),
-        ),
-        ElevatedButton(
-          onPressed: _submitedData,
-          child: Text(
-            'Add Transactions',
-            // style: TextStyle(color: Colors.amber),
-          ),
-          style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).primaryColor,
-              textStyle:
-                  TextStyle(color: Theme.of(context).textTheme.button.color)),
-        ),
-      ]),
-    ));
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Amount',
+                ),
+                controller: _amountController,
+                onSubmitted: (_) => _submitedData(),
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(_selectedDate == null
+                          ? 'No date Choosen!'
+                          : 'Picked Date : ${DateFormat.yMd().format(_selectedDate)}'),
+                    ),
+                    TextButton(
+                        style: TextButton.styleFrom(
+                            textStyle: TextStyle(
+                                color: Theme.of(context).primaryColor)),
+                        onPressed: _presentDatePicker,
+                        child: Text(
+                          'Choose Date',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ))
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: _submitedData,
+                child: Text(
+                  'Add Transactions',
+                  // style: TextStyle(color: Colors.amber),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor,
+                    textStyle: TextStyle(
+                        color: Theme.of(context).textTheme.button.color)),
+              ),
+            ]),
+      )),
+    );
   }
 }
