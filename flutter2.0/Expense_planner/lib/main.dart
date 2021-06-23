@@ -15,7 +15,33 @@ void main() {
   // SystemChrome.setPreferredOrientations(
   //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(MaterialApp(
+  runApp(
+      //   Platform.isIOS? CupertinoApp(
+      //     title: 'Personal Expenses ',
+      //   home: MyHomePage(),
+      //   debugShowCheckedModeBanner: false,
+      //   theme: CupertinoThemeData(
+      //       barBackgroundColor: Colors.purple,
+      //       primaryColor: Colors.amber,
+      //       // errorColor: Colors.red,
+      //       textTheme: CupertinoTextThemeData()
+      //       .light().textTheme.copyWith(
+      //             headline6: TextStyle(
+      //                 fontFamily: 'OpenSans',
+      //                 fontWeight: FontWeight.bold,
+      //                 fontSize: 20),
+      //             button: TextStyle(color: Colors.white),
+      //           ),
+      //       fontFamily: 'Quicksand',
+      //       appBarTheme: AppBarTheme(
+      //           textTheme: ThemeData.light().textTheme.copyWith(
+      //               headline6: TextStyle(
+      //                   fontFamily: 'OpenSans',
+      //                   fontSize: 20,
+      //                   fontWeight: FontWeight.bold)))),
+      // )
+      //   ) :
+      MaterialApp(
     title: 'Personal Expenses ',
     home: MyHomePage(),
     debugShowCheckedModeBanner: false,
@@ -132,51 +158,56 @@ class _MyHomePageState extends State<MyHomePage> {
       child: TransactionsList(
           transaction: _userTransactions, deleteTx: _deleteTransactions),
     );
-    final pagebody = SingleChildScrollView(
-      child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            if (islandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Show Chart'),
-                  Switch.adaptive(
-                    activeColor: Theme.of(context).accentColor,
-                    value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  )
-                ],
-              ),
-            if (!islandscape)
-              Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(
-                  recentTransactions: _recentTransactions,
-                ),
-              ),
-            if (!islandscape) txListWidget,
-            if (islandscape)
-              _showChart
-                  ? Container(
-                      height: (mediaQuery.size.height -
-                              appBar.preferredSize.height -
-                              mediaQuery.padding.top) *
-                          0.7,
-                      child: Chart(
-                        recentTransactions: _recentTransactions,
-                      ),
+    final pagebody = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              if (islandscape)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Show Chart',
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Switch.adaptive(
+                      activeColor: Theme.of(context).accentColor,
+                      value: _showChart,
+                      onChanged: (value) {
+                        setState(() {
+                          _showChart = value;
+                        });
+                      },
                     )
-                  : txListWidget,
-          ]),
+                  ],
+                ),
+              if (!islandscape)
+                Container(
+                  height: (mediaQuery.size.height -
+                          appBar.preferredSize.height -
+                          mediaQuery.padding.top) *
+                      0.3,
+                  child: Chart(
+                    recentTransactions: _recentTransactions,
+                  ),
+                ),
+              if (!islandscape) txListWidget,
+              if (islandscape)
+                _showChart
+                    ? Container(
+                        height: (mediaQuery.size.height -
+                                appBar.preferredSize.height -
+                                mediaQuery.padding.top) *
+                            0.7,
+                        child: Chart(
+                          recentTransactions: _recentTransactions,
+                        ),
+                      )
+                    : txListWidget,
+            ]),
+      ),
     );
     return Platform.isIOS
         ? CupertinoPageScaffold(
