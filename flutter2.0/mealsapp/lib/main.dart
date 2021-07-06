@@ -31,9 +31,14 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
       ),
-      home: CategoriesScreen(),
+      // home: CategoriesScreen(),
       debugShowCheckedModeBanner: false,
-      routes: {'/categories-meals': (ctx) => CategoryMealsScreen()},
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => CategoriesScreen(),
+        // '/categories-meals': (ctx) => CategoryMealsScreen()
+        CategoryMealsScreen.routName: (ctx) => CategoryMealsScreen(),
+      },
     );
   }
 }
