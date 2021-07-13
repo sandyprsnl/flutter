@@ -1,8 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import './category_meals_screen.dart';
-import './categories_screen.dart';
+import './screens/tabs_screen.dart';
+import './screens/meal_detail_screen.dart';
+import './screens/category_meals_screen.dart';
+import './screens/categories_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,9 +35,22 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (ctx) => CategoriesScreen(),
+        '/': (ctx) => TabsScreen(),
         // '/categories-meals': (ctx) => CategoryMealsScreen()
         CategoryMealsScreen.routName: (ctx) => CategoryMealsScreen(),
+        MealDetail.routName: (ctx) => MealDetail(),
+      },
+      onGenerateRoute: (setting) {
+        print('rout not exist or using dynamic rout ');
+        print(setting.arguments);
+        print(setting.name);
+        // return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      },
+      onUnknownRoute: (setting) {
+        print('rout not found 404');
+        print(setting.arguments);
+        print(setting.name);
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
       },
     );
   }
