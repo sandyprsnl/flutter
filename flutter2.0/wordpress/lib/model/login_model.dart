@@ -10,11 +10,7 @@ class LoginResponseModal {
   String? message;
   Data? data;
   LoginResponseModal(
-      {required this.success,
-      required this.statusCode,
-      required this.code,
-      required this.message,
-      required this.data});
+      {this.success, this.statusCode, this.code, this.message, this.data});
 
   LoginResponseModal.fromJson(Map<String, dynamic> json) {
     print(json);

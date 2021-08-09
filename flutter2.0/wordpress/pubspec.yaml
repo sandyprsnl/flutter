@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.2
+  shared_preferences: 2.0.6
+  onesignal_flutter: ^3.1.0
 
 
 

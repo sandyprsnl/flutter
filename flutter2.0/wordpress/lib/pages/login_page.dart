@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../services/progressHUD.dart';
 import '../utils/form_helper.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
+  static const routName = '/login';
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -66,11 +68,11 @@ class _LoginPageState extends State<LoginPage> {
               Spacer(),
               Align(
                 alignment: Alignment.center,
-                // child: Image.network(
-                //   'https://impress.org/wp-content/uploads/wordpress.png',
-                //   height: 200,
-                //   fit: BoxFit.contain,
-                // ),
+                child: Image.network(
+                  'https://impress.org/wp-content/uploads/wordpress.png',
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
               ),
               Spacer(),
             ],
@@ -149,6 +151,16 @@ class _LoginPageState extends State<LoginPage> {
                 setState(() {
                   this.isApiCallProcess = false;
                 });
+                if (response) {
+                  print('get');
+                  globalFormKey.currentState!.reset();
+                  Navigator.of(context).pushNamed(HomePage.routName);
+                } else {
+                  FormHelper.showMessage(context, 'Wordpress Login',
+                      'Invalid Username or Password', 'Ok', () {
+                    Navigator.of(context).pop();
+                  });
+                }
                 print(response);
               });
             }
