@@ -31,7 +31,19 @@ class _MyAppState extends State<MyApp> {
 
       _availableMeals = DUMMY_MEALS.where((meal) {
         //..
-        if (_filters['gluten'] == true) {}
+        if (_filters['gluten'] == true && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose'] == true && !meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegan'] == true && !meal.isVegan) {
+          return false;
+        }
+        if (_filters['vegetarian'] == true && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
       }).toList();
     });
   }
@@ -67,7 +79,8 @@ class _MyAppState extends State<MyApp> {
         CategoryMealsScreen.routName: (ctx) =>
             CategoryMealsScreen(availableMeals: _availableMeals),
         MealDetail.routName: (ctx) => MealDetail(),
-        FilterScreen.routName: (ctx) => FilterScreen(saveFilters: _setFilters),
+        FilterScreen.routName: (ctx) =>
+            FilterScreen(currentFilters: _filters, saveFilters: _setFilters),
       },
       onGenerateRoute: (setting) {
         print('rout not exist or using dynamic rout ');
