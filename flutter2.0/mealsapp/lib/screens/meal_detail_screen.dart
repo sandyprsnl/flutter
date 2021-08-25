@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import '../dummy_data.dart';
 
 class MealDetail extends StatelessWidget {
-  const MealDetail({Key? key}) : super(key: key);
   static const routName = '/meal-detail';
+  final Function? toggleFevorit;
+  final Function? isFevorite;
+
+  MealDetail({this.toggleFevorit, this.isFevorite});
 
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
@@ -81,12 +84,16 @@ class MealDetail extends StatelessWidget {
           ],
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.delete),
+      //   onPressed: () {
+      //     //back pervious sscreen and send meal id to delete meal
+      //     Navigator.of(context).pop(mealId);
+      //   },
+      // ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          //back pervious sscreen
-          Navigator.of(context).pop(mealId);
-        },
+        child: Icon(isFevorite!(mealId) ? Icons.star : Icons.star_border),
+        onPressed: () => toggleFevorit!(mealId),
       ),
     );
   }
