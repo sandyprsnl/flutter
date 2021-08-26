@@ -11,7 +11,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<Product>(context, listen: false);
+    print('product build');
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -27,14 +28,18 @@ class ProductItem extends StatelessWidget {
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black87,
-          leading: IconButton(
-            color: Theme.of(context).accentColor,
-            icon: Icon(product.isFevorite
-                ? Icons.favorite
-                : Icons.favorite_border_outlined),
-            onPressed: () {
-              product.toggleFevoriteStatus();
-            },
+          leading: Consumer<Product>(
+            // builder: (ctx, product, child) =>
+            builder: (ctx, product, _) => IconButton(
+              color: Theme.of(context).accentColor,
+              icon: Icon(product.isFevorite
+                  ? Icons.favorite
+                  : Icons.favorite_border_outlined),
+              onPressed: () {
+                product.toggleFevoriteStatus();
+              },
+            ),
+            // child: Text('Not changes'), no changes in child when you use chield in consumer and when consumer re build
           ),
           title: Text(
             product.title,

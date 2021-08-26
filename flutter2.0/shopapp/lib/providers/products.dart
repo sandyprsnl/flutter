@@ -37,8 +37,16 @@ class Products with ChangeNotifier {
     ),
   ];
 
+  // var _shoFevoritesOnly = false;
   List<Product> get items {
+    // if (_shoFevoritesOnly) {
+    //   return _items.where((productItem) => productItem.isFevorite).toList();
+    // }
     return [..._items];
+  }
+
+  List<Product> get fevoritesItem {
+    return _items.where((proditem) => proditem.isFevorite).toList();
   }
 
   void addProduct() {
@@ -49,4 +57,15 @@ class Products with ChangeNotifier {
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
+
+  // void showFevoritesOnly() {
+  //   _shoFevoritesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showFevoritesAll() {
+  //   _shoFevoritesOnly = false;
+  //   notifyListeners();
+  // }
+
 }

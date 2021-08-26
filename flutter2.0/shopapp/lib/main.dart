@@ -7,6 +7,7 @@ import './screens/products_details.dart';
 void main() => runApp(ChangeNotifierProvider(
       create: (ctx) => Products(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Shop App',
         home: ProductsOverviewScreen(),
         theme: ThemeData(
