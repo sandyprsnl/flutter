@@ -7,6 +7,7 @@ import './providers/products.dart';
 import './screens/products_details.dart';
 import '/screens/cart_screen.dart';
 import './screens/orders_screen.dart';
+import './screens/user_products_screen.dart';
 
 void main() => runApp(MultiProvider(
       providers: [
@@ -30,6 +31,7 @@ void main() => runApp(MultiProvider(
           ProductDetailScreen.routName: (ctx) => ProductDetailScreen(),
           CartScreen.routName: (ctx) => CartScreen(),
           OrdersScreen.routName: (ctx) => OrdersScreen(),
+          UserProductScreen.routName: (ctx) => UserProductScreen(),
         },
       ),
     ));
