@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './screens/edit_product_screen.dart';
 import './providers/orders.dart';
 import './providers/cart.dart';
 import 'screens/products_overview_screen.dart';
@@ -24,14 +25,15 @@ void main() => runApp(MultiProvider(
         title: 'Shop App',
         home: ProductsOverviewScreen(),
         theme: ThemeData(
-            primarySwatch: Colors.purple,
-            accentColor: Colors.deepOrange,
-            fontFamily: 'Lato'),
+            fontFamily: 'Lato',
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+                .copyWith(secondary: Colors.deepOrange)),
         routes: {
           ProductDetailScreen.routName: (ctx) => ProductDetailScreen(),
           CartScreen.routName: (ctx) => CartScreen(),
           OrdersScreen.routName: (ctx) => OrdersScreen(),
           UserProductScreen.routName: (ctx) => UserProductScreen(),
+          EditProductScreen.routName: (ctx) => EditProductScreen(),
         },
       ),
     ));
