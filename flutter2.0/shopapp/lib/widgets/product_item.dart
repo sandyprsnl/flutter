@@ -33,7 +33,7 @@ class ProductItem extends StatelessWidget {
           leading: Consumer<Product>(
             // builder: (ctx, product, child) =>
             builder: (ctx, product, _) => IconButton(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               icon: Icon(product.isFevorite
                   ? Icons.favorite
                   : Icons.favorite_border_outlined),
@@ -49,7 +49,7 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
