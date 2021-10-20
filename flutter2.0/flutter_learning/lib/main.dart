@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import './horizontal_scroll/horizontal_scroll_list.dart';
 import 'app_setting/app_setting.dart';
 import 'download_and_open_file/download_and_open.dart';
+//slider routs start
 import './slider/slider.dart';
 import './slider/basic_demo.dart';
 import './slider/no_center_mode.dart';
 import './slider/image_slider.dart';
+import './slider/adv_img_slider.dart';
+//Slider routs end
 
 void main() {
   runApp(ValueListenableBuilder(
@@ -28,6 +31,7 @@ void main() {
             BasicDemo.routName: (ctx) => const BasicDemo(),
             NoCenterDemo.routName: (ctx) => const NoCenterDemo(),
             ImageSlider.routName: (ctx) => const ImageSlider(),
+            AdvImagSlider.routName: (ctx) => const AdvImagSlider(),
             //Slider routs end
           },
         );

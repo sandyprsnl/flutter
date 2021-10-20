@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'basic_demo.dart';
 import './no_center_mode.dart';
 import './image_slider.dart';
+import './adv_img_slider.dart';
 
 class FlutterSliders extends StatelessWidget {
   static const routName = "/slider";
@@ -41,6 +42,10 @@ class FlutterSliders extends StatelessWidget {
               title: 'Image Slider',
               ctx: context,
               routeName: ImageSlider.routName),
+          createButton(
+              title: 'Advance Image Slider',
+              ctx: context,
+              routeName: AdvImagSlider.routName),
         ],
       ),
     );
