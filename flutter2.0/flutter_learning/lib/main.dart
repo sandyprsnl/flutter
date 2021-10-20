@@ -11,6 +11,8 @@ import './slider/no_center_mode.dart';
 import './slider/image_slider.dart';
 import './slider/adv_img_slider.dart';
 //Slider routs end
+import 'learning_firebase/learning_firebase.dart';
+import 'local_notifications/local_notifications.dart';
 
 void main() {
   runApp(ValueListenableBuilder(
@@ -33,6 +35,9 @@ void main() {
             ImageSlider.routName: (ctx) => const ImageSlider(),
             AdvImagSlider.routName: (ctx) => const AdvImagSlider(),
             //Slider routs end
+            FlutterNotifications.routName: (ctx) =>
+                const FlutterNotifications(),
+            LearningFirebase.routName: (ctx) => const LearningFirebase(),
           },
         );
       }));
@@ -94,6 +99,16 @@ class LearningFlutter extends StatelessWidget {
                 title: const Text('Flutter Sliders'),
                 subtitle: const Text('How to make  Sliders  Examples'),
                 routName: FlutterSliders.routName),
+            createListTile(
+                ctx: context,
+                title: const Text('Flutter Notifications'),
+                subtitle: const Text('How to make  Flutter Notifications'),
+                routName: FlutterNotifications.routName),
+            createListTile(
+                ctx: context,
+                title: const Text('Learning Firebase'),
+                subtitle: const Text('How to connect firebase and work'),
+                routName: LearningFirebase.routName),
           ],
         ),
       ),
