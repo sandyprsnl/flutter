@@ -19,6 +19,7 @@ class Cart with ChangeNotifier {
   }
 
   int get itemCount {
+    // ignore: unnecessary_null_comparison
     return _items == null ? 0 : _items.length;
   }
 
