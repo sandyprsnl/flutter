@@ -5,7 +5,7 @@ import 'product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
-    Product(
+    /* Product(
       id: 'p1',
       title: 'Red Shirt',
       description: 'A red shirt - it is pretty red!',
@@ -36,7 +36,7 @@ class Products with ChangeNotifier {
       price: 49.99,
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
-    ),
+    ),*/
   ];
 
   // var _shoFevoritesOnly = false;
@@ -51,19 +51,46 @@ class Products with ChangeNotifier {
     return _items.where((proditem) => proditem.isFevorite).toList();
   }
 
-  Future<void> addProduct(Product product) {
+  Future<void> fetchAndSetProduct() async {
     final url = Uri.https(
-        'shopapp-668e9-default-rtdb.firebaseio.com', '/products.json');
-    return http
-        .post(url,
-            body: json.encode({
-              'title': product.title,
-              'description': product.description,
-              'price': product.price,
-              'imageUrl': product.imageUrl,
-              'isFevorits': product.isFevorite,
-            }))
-        .then((response) {
+        'shop-app-6bf9f-default-rtdb.firebaseio.com', '/products.json');
+    try {
+      final response = await http.get(url);
+      // print(json.decode(response.body));
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<Product> loadedProducts = [];
+      extractedData.forEach((prodId, prodData) {
+        loadedProducts.add(
+          Product(
+            id: prodId,
+            title: prodData['title'],
+            description: prodData['description'],
+            price: prodData['price'],
+            imageUrl: prodData['imageUrl'],
+            // isFevorite: prodData['isFevorite'],
+          ),
+        );
+        _items = loadedProducts;
+        notifyListeners();
+      });
+    } catch (error) {
+      print(error);
+      throw error;
+    }
+  }
+
+  Future<void> addProduct(Product product) async {
+    final url = Uri.https(
+        'shop-app-6bf9f-default-rtdb.firebaseio.com', '/products.json');
+    try {
+      final response = await http.post(url,
+          body: json.encode({
+            'title': product.title,
+            'description': product.description,
+            'price': product.price,
+            'imageUrl': product.imageUrl,
+            'isFevorits': product.isFevorite,
+          }));
       final newProduct = Product(
         title: product.title,
         description: product.description,
@@ -75,7 +102,10 @@ class Products with ChangeNotifier {
 
       // _items.add(value);
       notifyListeners();
-    });
+    } catch (error) {
+      // print(error);
+      throw error;
+    }
   }
 
   Product findById(String id) {

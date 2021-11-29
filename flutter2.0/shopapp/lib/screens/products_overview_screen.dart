@@ -5,6 +5,7 @@ import '../widgets/app_drawer.dart';
 import '../providers/cart.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
+import '../providers/products.dart';
 
 enum FilterOptions {
   Favorites,
@@ -18,6 +19,36 @@ class ProductsOverviewScreen extends StatefulWidget {
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var _showOnlyFavorites = false;
+  var isInit = true;
+  var _isLoading = false;
+  @override
+  void initState() {
+    // Provider.of<Products>(context).fetchAndSetProduct();       //given error becouse context is empty before the bild
+    // Future.delayed(Duration.zero).then((value) {              //add delay to conext is define.
+    //   //add delay
+    //   Provider.of<Products>(context, listen: false).fetchAndSetProduct();
+    // });
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      Provider.of<Products>(context, listen: false)
+          .fetchAndSetProduct()
+          .then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +92,13 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         ],
       ),
       drawer: AppDrawer(),
-      body: ProductsGrid(
-        showFavs: _showOnlyFavorites,
-      ),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ProductsGrid(
+              showFavs: _showOnlyFavorites,
+            ),
     );
   }
 }
