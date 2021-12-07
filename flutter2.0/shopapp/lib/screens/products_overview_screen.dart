@@ -23,7 +23,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var _isLoading = false;
   @override
   void initState() {
-    // Provider.of<Products>(context).fetchAndSetProduct();       //given error becouse context is empty before the bild
+    // Provider.of<Products>(context).fetchAndSetProduct();       //given error becouse context is empty before the build
     // Future.delayed(Duration.zero).then((value) {              //add delay to conext is define.
     //   //add delay
     //   Provider.of<Products>(context, listen: false).fetchAndSetProduct();
