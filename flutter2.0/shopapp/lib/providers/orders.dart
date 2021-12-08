@@ -48,7 +48,7 @@ class Orders with ChangeNotifier {
             datetime: DateTime.parse(orderData['datetime'])),
       );
     });
-    _orders = loadedOrders;
+    _orders = loadedOrders.reversed.toList();
     notifyListeners();
   }
 
