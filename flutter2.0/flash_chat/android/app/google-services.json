@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "949076326947",
+    "project_id": "f-chat-2ad0f",
+    "storage_bucket": "f-chat-2ad0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949076326947:android:2da6cf9bea090f368a0f96",
+        "android_client_info": {
+          "package_name": "com.SandeepBhardwaj.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949076326947-475jv7oaodss04li2fn1hr68cvmjksmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeNXjRyMEhxkT3R8ObEyWK_WX-lXTLcrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949076326947-475jv7oaodss04li2fn1hr68cvmjksmq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
